@@ -90,7 +90,7 @@ down into eval?
 [jl_get_builtin_hooks()](https://github.com/JuliaLang/julia/blob/master/src/init.c) initialises
 global C pointers to Julia globals defined in `boot.jl`.
 
-[jl_init_box_caches()](https://github.com/JuliaLang/julia/blob/master/src/alloc.c) pre-allocates
+[jl_init_box_caches()](https://github.com/JuliaLang/julia/blob/master/src/datatype.c) pre-allocates
 global boxed integer value objects for values up to 1024. This speeds up allocation of boxed ints
 later on. e.g.:
 

@@ -395,9 +395,11 @@ function summarize(io::IO, T::DataType, binding)
     if !isempty(subtypes(T))
         println(io, "**Subtypes:**")
         println(io, "```")
-        for t in subtypes(T)
+        sub_types = subtypes(T)
+        for t in Iterators.take(sub_types, 20)
             println(io, t)
         end
+        length(sub_types) > 20 && println(io, "...")
         println(io, "```")
     end
     if T != Any

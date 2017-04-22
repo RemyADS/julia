@@ -747,7 +747,12 @@ function stale_cachefile(modpath::String, cachefile::String)
 
         # Check if transitive dependencies can be fullfilled
         for mod in keys(required_modules)
-            isdefined(Main, mod) && continue
+            if mod == :Main || mod == :Core || mod == :Base
+                continue
+            # Module is already loaded
+            elseif isdefined(Main, mod)
+                continue
+            end
             name = string(mod)
             path = find_in_node_path(name, nothing, 1)
             if path === nothing
